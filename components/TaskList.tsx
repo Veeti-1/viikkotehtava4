@@ -13,20 +13,25 @@ interface Task{
 
 export default function TaskList(){
     const [tasks,setTasks] = useState<Task[]>([])
-    const [input,setInput] = useState('')
-    const [id, setId] = useState<Number>(0)
-    const taskTitle: string = " ";
-    const description: string = " ";
+    const [taskTitle,setTaskTitle] = useState('')
+    const [description,setdDscription] = useState('')
+
+    const [id, setId] = useState<Number>(1)
+    
    
-    const addTask=(taskTitle: string,description: string)=>{
-     if(input.trim()){
-        
-        setTasks(prev =>[
+    const addTask=()=>{
+        if(taskTitle.trim() && description.trim()){
+            setTasks(prev =>[
             ...prev,
             {id:id.toString(), name:taskTitle, description:description}
-        ])
-        setInput('')
-     }
+        ]) 
+        setTaskTitle('')
+        setdDscription('')
+        
+        }
+       
+        
+     
     }
     return(
         <View style={styles.container}>
@@ -35,20 +40,20 @@ export default function TaskList(){
                 <TextInput
                 style={styles.input}
                 value={taskTitle}
-                onChangeText={setInput}
+                onChangeText={setTaskTitle}
                 placeholder='Add new Task'
                 />
                 <TextInput
                 style={styles.input}
                 value={description}
-                onChangeText={setInput}
+                onChangeText={setdDscription}
                 placeholder='description'
                 />
                 <Button
                 title="Add" 
                 onPress={()=>{
                     setId(tasks.length +1)
-                    addTask(taskTitle,description)
+                    addTask()
                 }}
                 />
             </View>
