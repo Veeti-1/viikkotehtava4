@@ -57,32 +57,34 @@ export default function TaskList(){
     }
     return(
         <View style={styles.container}>
-            <Text>Tasks</Text>
-            <View>
+            <View style={styles.inputContainer}>
+              <View>
                 <TextInput
+                
                 style={styles.input}
                 value={taskTitle}
                 onChangeText={setTaskTitle}
                 placeholder='Add new Task'
                 />
-              
-                <Button
-                title="Add" 
+                </View>
+                <View>
+               <Button
+                title="Save" 
                 onPress={()=>{
                     
                     addTask()
                 }}
+                
                 />
+                </View>
+               
             </View>
               
                 <ScrollView>
                   
                    {tasks.map((item)=>(
-                    <Pressable
-                    onPress={()=>{
-
-                    }}
-                    >
+                    
+                    
                     <Row
                     key={item.id}
                     id={item.id}
@@ -90,7 +92,7 @@ export default function TaskList(){
                    
                     
                     />
-                    </Pressable>
+                    
                    ))}
                    
                 </ScrollView>
@@ -101,32 +103,36 @@ export default function TaskList(){
 const styles = StyleSheet.create({
   container: {
     marginTop:50,
-    flex: 1,
+    
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
+    
   },
   list:{
-backgroundColor: '#f9f9f9',
+backgroundColor: '#ffffffff',
 borderBottomWidth: 1,
-borderColor: '#eee',
+borderColor: '#ffffffff',
 padding: 16,
   },
   rowBack: {
-backgroundColor: '#ddd',
+backgroundColor: '#ffffffff',
 flex: 1,
 alignItems: 'flex-end',
 justifyContent: 'center',
-paddingRight: 20,
+paddingRight: 10,
   },
   input:{
     margin:5,
-
+    width:200,
+    height:50,
     borderColor:'#000000',
     borderWidth:1,
   },
   text:{
 
   },
-  
+  inputContainer:{
+    flexDirection:'row',
+    alignItems:'center'
+  }
 });
