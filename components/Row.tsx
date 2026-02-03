@@ -9,13 +9,22 @@ export default function Row ({ id, name }: Task){
  
   return(
 <View>
+      <Pressable onPress={()=>{
+        if(done===false){
+          setDone(true)
+          }
+          else if(done === true){
+            setDone(false)
+            }
+            }} >
 
 <View style={styles.list}>
 
-    <Text style={styles.text}>Id: {id}</Text>
+    
     <Text  style={[{textDecorationLine: done ? 'line-through':'none'}]}>{name}</Text>
     
 </View>
+</Pressable>
 
 </View>
 );
@@ -28,7 +37,7 @@ const styles = StyleSheet.create({
   list:{
 backgroundColor: '#ffffffff',
 borderBottomWidth: 1,
-borderColor: '#ffffffff',
+borderColor: '#eee',
 padding: 16,
   },
   text:{}

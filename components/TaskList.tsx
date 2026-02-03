@@ -84,16 +84,7 @@ export default function TaskList(){
                   
                    {tasks.map((item)=>(
                     
-                    <Pressable
-                     onPress={()=>{
-                          if(done===false){
-                          setDone(true)
-                        }
-                        else if(done === true){
-                          setDone(false)
-                        }
-                        
-                        }} >
+                    
                     <Row
                     key={item.id}
                     id={item.id}
@@ -101,7 +92,7 @@ export default function TaskList(){
                    
                     
                     />
-                    </Pressable>
+                    
                    ))}
                    
                 </ScrollView>
