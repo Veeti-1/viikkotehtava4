@@ -5,7 +5,7 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tasks</Text>
+     
      <View style={styles.listContainer}>
      <TaskList/>
 
@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'baseline',
     justifyContent: 'center',
-  },
-  title:{
-    marginLeft:50,
-    marginTop:20,
   }
   
 });
