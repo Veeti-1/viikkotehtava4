@@ -13,15 +13,7 @@ export default function Row ({ id, name }: Task){
 <View style={styles.list}>
 
     <Text style={styles.text}>Id: {id}</Text>
-    <Text onPress={()=>{
-      if(done===false){
-      setDone(true)
-    }
-    else if(done === true){
-      setDone(false)
-    }
-    
-    }}  style={[{textDecorationLine: done ? 'line-through':'none'}]}>{name}</Text>
+    <Text  style={[{textDecorationLine: done ? 'line-through':'none'}]}>{name}</Text>
     
 </View>
 

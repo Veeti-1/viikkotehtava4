@@ -18,7 +18,7 @@ export interface Task{
 export default function TaskList(){
     const [tasks,setTasks] = useState<Task[]>([])
     const [taskTitle,setTaskTitle] = useState('')
-  
+  const [done,setDone] = useState(false);
     let id = tasks.length -1 + AsyncStorage.getAllKeys.length - 1;
   
      useEffect(()=>{
@@ -84,7 +84,16 @@ export default function TaskList(){
                   
                    {tasks.map((item)=>(
                     
-                    
+                    <Pressable
+                     onPress={()=>{
+                          if(done===false){
+                          setDone(true)
+                        }
+                        else if(done === true){
+                          setDone(false)
+                        }
+                        
+                        }} >
                     <Row
                     key={item.id}
                     id={item.id}
@@ -92,7 +101,7 @@ export default function TaskList(){
                    
                     
                     />
-                    
+                    </Pressable>
                    ))}
                    
                 </ScrollView>
