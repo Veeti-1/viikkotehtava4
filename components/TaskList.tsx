@@ -83,7 +83,8 @@ export default function TaskList(){
                 renderItem={({item})=>(
                 
                 <View style={styles.list}>
-                    <Text onPress={()=>{
+                    <Text style={styles.text} onPress={()=>{
+                        
                         styles.textCliked
                     }}>
                         {item.name} id: {item.id}
@@ -130,7 +131,7 @@ paddingRight: 20,
     margin:5,
 
     borderColor:'#000000',
-    borderWidth:5,
+    borderWidth:1,
   },
   text:{
 
