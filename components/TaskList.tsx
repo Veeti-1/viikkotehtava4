@@ -10,7 +10,7 @@ interface Task{
   id:string;
   name:string;
   description:string;
-  isMarkedDone:Boolean;
+  
  
 }
 
@@ -19,8 +19,8 @@ export default function TaskList(){
     const [taskTitle,setTaskTitle] = useState('')
     const [description,setdDscription] = useState('')
     
-    
-    const [id, setId] = useState<Number>(tasks.length)
+    let id = 0;
+  
      useEffect(()=>{
         loadSavedTasks();
        },[])
@@ -29,6 +29,7 @@ export default function TaskList(){
             console.log(tasks, ':Taskit:muistissa')
             const json = await AsyncStorage.getItem(KEY)
             if(json)setTasks(JSON.parse(json))
+            id=AsyncStorage.getAllKeys.length
             }catch(e)
             {
             console.log(e)
@@ -41,11 +42,13 @@ export default function TaskList(){
        },[tasks,setTasks])
    
     const addTask=()=>{
+        id++
         if(taskTitle.trim() && description.trim()){
             setTasks(prev =>[
             ...prev,
-            {id:id.toString(), name:taskTitle, description:description, isMarkedDone:false}
-        ]) 
+            {id:id.toString(), name:taskTitle, description:description}
+        ])
+       
         setTaskTitle('')
         setdDscription('')
         }
@@ -70,7 +73,7 @@ export default function TaskList(){
                 <Button
                 title="Add" 
                 onPress={()=>{
-                    setId(+1)
+                    
                     addTask()
                 }}
                 />
