@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, View,Button, Pressable } from 'react-native';
+import { StyleSheet, Text, TextInput, View,Button, Pressable, ScrollView } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
+
 
 const KEY = 'TASK_LIST_ITEMS';
 
@@ -13,7 +14,16 @@ interface Task{
   
  
 }
+const Row = ({ id, name, description }: Task) => (
+<View >
 
+<View style={styles.list}>
+<Text style={styles.text}>{id}</Text>
+<Text style={styles.text}>{name}</Text>
+<Text style={styles.text}>{description}</Text>
+</View>
+</View>
+);
 export default function TaskList(){
     const [tasks,setTasks] = useState<Task[]>([])
     const [taskTitle,setTaskTitle] = useState('')
@@ -79,41 +89,19 @@ export default function TaskList(){
                 }}
                 />
             </View>
-            
-
-                <SwipeListView
-                data={tasks}
-                keyExtractor={item=>item.id}
-                renderItem={({item})=>(
-                
-                <View style={styles.list}>
-                    <Text style={[{textDecorationLine: done ? 'none':'line-through'}]}>
-                        <Pressable onPress={()=>{
-                        if(!done){
-                        setDone(true)
-                    }else{
-                        setDone(false)
-                    }
-                    }}>
-                        {item.name} id: {item.id}
-                        <Text>
-                        {item.description}
-                        
-                    </Text>
-                    </Pressable>
-                    </Text>
-                    
+                <ScrollView>
+                   {tasks.map((item)=>(
+                    <Row
+                    id={item.id}
+                    name={item.name}
+                    description={item.description}
+                    />
+                   ))}
+                </ScrollView>
                 </View>
-               
-                )}
-                renderHiddenItem={()=><View style={styles.rowBack}/>}
-                rightOpenValue={-75}
-                disableRightSwipe
                 
-                />
-             
-                
-        </View>
+            
+    
     );
 }
 const styles = StyleSheet.create({
