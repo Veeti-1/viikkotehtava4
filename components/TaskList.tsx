@@ -1,8 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View,Button } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-
+const KEY = 'TASK_LIST_ITEMS';
 
 
 interface Task{
@@ -29,7 +30,20 @@ export default function TaskList(){
         setdDscription('')
         
         }
-       
+       useEffect(()=>{
+        (async () =>{
+            try{
+                const json = await AsyncStorage.getItem(KEY)
+                if(json)setTasks(JSON.parse(json))
+            }catch(e)
+            {
+                console.log(e)
+            }
+        })
+       },[])
+       useEffect(()=>{
+        AsyncStorage.setItem(KEY,JSON.stringify(tasks))
+       },[tasks])
         
      
     }
@@ -58,7 +72,7 @@ export default function TaskList(){
                 />
             </View>
                 
-                
+               
                 <SwipeListView
                 data={tasks}
                 keyExtractor={item=>item.id}
