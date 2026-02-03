@@ -7,32 +7,13 @@ const[done,setDone] = useState(false)
 const Row = ({ id, name, description }: Task) => (
     
 <View>
-<Pressable onPress={()=>{
-    if(done){
-    setDone(true)
-    }
-    setDone(false)
-    }}>
-
 <View style={styles.list}>
-{done&&(
-<>
+
     <Text style={styles.text}>{id}</Text>
     <Text style={styles.text}>{name}</Text>
     <Text style={styles.text}>{description}</Text>
-</>
-)}:{!done &&(
-    <>
-    <Text style={styles.textClicked}>{id}</Text>
-    <Text style={styles.textClicked}>{name}</Text>
-    <Text style={styles.textClicked}>{description}</Text>
-    </>
-)}
-
-
-
 </View>
-</Pressable>
+
 </View>
 );
 const styles = StyleSheet.create({
@@ -43,11 +24,8 @@ borderBottomWidth: 1,
 borderColor: '#eee',
 padding: 16,
   },
-  text:{
+  text:{}
 
-  },textClicked:{
-    textDecorationLine:'line-through'
-  }
  
 });
 export default Row
